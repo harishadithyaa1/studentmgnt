@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark">
+            <h2>Edit Classroom: {{ classroom.name }}</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" value="{{ classroom.name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Room Number</label>
+                    <input type="text" name="room_number" class="form-control" value="{{ classroom.room_number }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Teacher</label>
+                    <select name="teacher" class="form-control" required>
+                        {% for teacher in teachers %}
+                            <option value="{{ teacher.id }}" {% if teacher.id == classroom.teacher.id %}selected{% endif %}>{{ teacher.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{% url 'classroom_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

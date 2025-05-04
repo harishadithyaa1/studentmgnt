@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark">
+            <h5>Edit Student</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>First Name</label>
+                    <input type="text" name="first_name" class="form-control" value="{{ student.first_name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name" class="form-control" value="{{ student.last_name }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control" value="{{ student.email }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dateofbirth" class="form-control" value="{{ student.dob|date:'Y-m-d' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Classroom</label>
+                    <select name="classroom" class="form-control" required>
+                        {% for classroom in classrooms %}
+                            <option value="{{ classroom.id }}" {% if classroom.id == student.classroom.id %}selected{% endif %}>{{ classroom.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Save Changes</button>
+                <a href="{% url 'student_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+<form method="get">
+    <input type="text" name="q" placeholder="Search student by name" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+<h2>Student Details</h2>
+<ul>
+  <li><strong>First Name:</strong> {{ student.first_name }}</li>
+  <li><strong>Last Name:</strong> {{ student.last_name }}</li>
+  <li><strong>Email:</strong> {{ student.email }}</li>
+  <li><strong>Date of Birth:</strong> {{ student.dob }}</li>
+  <li><strong>Classroom:</strong> {{ student.classroom.name }}</li>
+</ul>
+
+<h3>Last Mark Details</h3>
+{% if last_mark %}
+  <ul>
+    <li><strong>Subject:</strong> {{ last_mark.subject }}</li>
+    <li><strong>Score:</strong> {{ last_mark.score }}</li>
+    <li><strong>Grade:</strong> {{ last_mark.grade }}</li>
+  </ul>
+{% else %}
+  <p>No marks available for this student.</p>
+{% endif %}
+

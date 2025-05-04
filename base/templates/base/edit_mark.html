@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark">
+            <h5>Edit Mark for {{ student.first_name }} {{ student.last_name }}</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>Subject</label>
+                    <input type="text" name="subject" class="form-control" value="{{ mark.subject }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Score</label>
+                    <input type="number" name="score" class="form-control" step="0.01" value="{{ mark.score }}" required>
+                </div>
+                <div class="mb-3">
+                    <label>Grade</label>
+                    <input type="text" name="grade" class="form-control" value="{{ mark.grade }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Mark</button>
+                <a href="{% url 'student_marks' student.id %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

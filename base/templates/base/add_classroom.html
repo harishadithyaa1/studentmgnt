@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-warning text-center text-dark">
+                    <h4 class="mb-0">Add Classroom</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Classroom Name</label>
+                            {{ form.name }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_teacher" class="form-label">Teacher</label>
+                            {{ form.teacher }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_room_number" class="form-label">Room Number</label>
+                            {{ form.room_number }}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Add Classroom</button>
+                        <a href="{% url 'classroom_list' %}" class="btn btn-secondary mt-2 w-100">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

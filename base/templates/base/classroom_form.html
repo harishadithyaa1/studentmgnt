@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+
+
+{% block content %}
+  <h2>{% if form.instance.pk %}Edit Classroom{% else %}Add Classroom{% endif %}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="{{ form.name.id_for_label }}">Classroom Name:</label>
+        {{ form.name }}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.teacher.id_for_label }}">Teacher:</label>
+        {{ form.teacher }}
+    </div>
+
+    <div class="mb-3">
+        <label for="{{ form.room_number.id_for_label }}">Room Number:</label>
+        {{ form.room_number }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+  <a href="{% url 'classroom_list' %}">Back to Classroom List</a>
+{% endblock %}
